@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
+use function PHPUnit\Framework\isEmpty;
+
 class DashboardController extends Controller
 {    
     function toDashboard(){
@@ -20,19 +22,19 @@ class DashboardController extends Controller
 
         // check if the user's ID appears in the bookings table
         $check_for_bookings = DB::table('bookings')
-        -> select('user_id')
-        -> where('user_id', '=', auth()->user()->id);
-
+            ->select('user_id')
+            ->where('user_id', '=', auth()->user()->id);
+        
         // if it does appear, it means the user has a booking, so we show them
-        if($check_for_bookings){
+        if(isEmpty($check_for_bookings)){
             $has_bookings = true;
 
-            // select the trainer's name, time and day at which the user has booked
+            // select the trainer's name, time and day at which the user has booked them
             $booked_trainer = DB::table('users')
                 ->distinct()
                 ->join('bookings', function($join){
                     $join->on('users.id', '=', 'bookings.trainer_id');
-                    $join->on('users.id' , '=', 'users.id');
+                    //$join->on('users.id' , '=', 'users.id');
                 })
                 ->select('users.*', 'bookings.day', 'bookings.time')
                 ->get();
@@ -40,22 +42,76 @@ class DashboardController extends Controller
 
         // if it is a trainer who has logged in
         if (auth()->user()->role == 1){
+
+            // check if the trainer has any trainees
+            // we use the variable from before ($has_bookings)
+            if (!$has_bookings) {
+                // takes us to the dashboard page
+                $trainers = User::where('role','like','1') -> get();
+
+                return view('/dashboard', compact('trainers', 'has_bookings'));
+            }
+
             // get all the trainer's trainees
+            /*
+                * Here, we join both the users and the bookings table
+                * We join them using the primary key in the users table (ID) and foreign key in the bookings table (user_id or trainer_id)
+                * Bookings table has 2 foreign keys (user_id or trainer_id)
+                * Since we want to get the USERS UNDER A TRAINER, we use the user_id as the foreign key
+                * We have a currently logged in trainer...
+                * ... so we join the two tables where the trainer's ID appears in the bookings table
+                * this gives us the users who have booked a particular trainer
+            */
             $trainees = DB::table('users')
-                ->distinct()
-                ->join('bookings', function($join){
-                    $join->on('users.id', '=', 'bookings.user_id');
-                    $join->on('users.id' , '=', 'users.id');
-                })
+                ->join('bookings', 'bookings.user_id', '=', 'users.id')
                 ->select('users.*', 'bookings.day', 'bookings.time')
+                ->where('bookings.trainer_id', '=', auth()->user()->id)
                 ->get();
             
                 $has_bookings = true;
-                // dd($booked_trainer);
+            
+                // get all trainers
+                $trainers = User::where('role','like','1') -> get();
+
+                // takes us to the dashboard page
+                return view('/dashboard', compact('trainers', 'trainees', 'has_bookings'));
+                
+        } else if ((auth()->user()->role == 2)) {
+            // check if the user has booked any trainers
+            // we use the variable from before ($has_bookings)
+            if (!$has_bookings) {
+                // takes us to the dashboard page
+                $trainers = User::where('role','like','1') -> get();
+
+                return view('/dashboard', compact('trainers', 'has_bookings'));
+            }
+
+            // get all the trainers that the user has booked
+            /*
+                * Here, we join both the users and the bookings table
+                * We join them using the primary key in the users table (ID) and foreign key in the bookings table (user_id or trainer_id)
+                * Bookings table has 2 foreign keys (user_id or trainer_id)
+                * Since we want to get the TRAINERS A USER HAS BOOKED, we use the trainer_id as the foreign key
+                * We have a currently logged in user...
+                * ... so we join the two tables where the user's ID appears in the bookings table
+                * this gives us the trainers who have booked a particular user
+            */
+            $booked_trainers = DB::table('users')
+                ->join('bookings', 'bookings.trainer_id', '=', 'users.id')
+                ->select('users.*', 'bookings.day', 'bookings.time')
+                ->where('bookings.user_id', '=', auth()->user()->id)
+                ->get();
+
+                // if(empty($booked_trainers)){
+                //     dd($has_bookings);
+                //     return view('/dashboard', compact('trainers', 'booked_trainers', 'has_bookings'));
+                // }
+            
+                $has_bookings = true;
             
                 // takes us to the dashboard page
                 $trainers = User::where('role','like','1') -> get();
-                return view('/dashboard', compact('trainers', 'trainees', 'has_bookings'));
+                return view('/dashboard', compact('trainers', 'booked_trainers', 'has_bookings'));
         }
 
         // takes us to the dashboard page

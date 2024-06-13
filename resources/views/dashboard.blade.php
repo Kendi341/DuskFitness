@@ -53,7 +53,7 @@
             <ul class="nav nav-tabs nav-justified ">
                 @if(auth()->user()->role == 1)
                     <li class="nav-item">
-                        <a id="underMe" class="nav-link active" onclick="myFunction()" aria-current="page" href="#">My Trainees</a>
+                        <a id="underMe" class="nav-link active" onclick="myFunction()" aria-current="page" href="#">Gym Trainers</a>
                     </li>
                     <li class="nav-item">
                         <a id="mySchedule" class="nav-link" onclick="myFunction2()" href="#">My Schedule</a>
@@ -106,6 +106,7 @@
 
         <div id="books" class="row mt-3" style="display: none;">
             <h5 class="text-center fw-bold p-4 m-2">THESE ARE THE ONES I HAVE BOOKED</h5>
+
             <table class="table table-striped table-hover">
                 <thead>
                     <tr class="text-center fw-bold">
@@ -119,7 +120,7 @@
                 </thead>
                 <tbody>
                     @if($has_bookings)
-                        @foreach ($booked_trainer as $booked_trainer)
+                        @foreach ($booked_trainers as $booked_trainer)
                             <tr class="text-center">
                                 <td scope="row" class="p-4"> {{ $booked_trainer -> firstname }} </td>
                                 <td class="p-4"> {{ $booked_trainer -> lastname }} </td>
@@ -128,7 +129,7 @@
                                 <td class="p-4"> {{ $booked_trainer -> day }} </td>
                                 <td class="p-4"> {{ $booked_trainer -> time }} </td>
                             </tr>
-                        @endforeach
+                        @endforeach                    
                     @endif
                 </tbody>
             </table>
@@ -161,6 +162,7 @@
 
         <div id="books" class="row mt-3" style="display: none;">
             <h5 class="text-center fw-bold p-4 m-2">MY TRAINEES</h5>
+                
             <table class="table table-striped table-hover">
                 <thead>
                     <tr class="text-center fw-bold">
