@@ -10,7 +10,6 @@
     TRAINER NAME: {{$trainer->firstname}} <span> </span> {{$trainer->lastname}}
 </h4>
 
-
 <div class="container-fluid w-50">
     <div class="row justify-content-center">
         <div class="mt-5">
@@ -66,10 +65,10 @@
                 <input class="form-control" type="email" name="email" placeholder="Trainer Email" value="{{ $trainer->firstname }}" disabled style="width: 500px">
             </div>
             <div class="col-12 text-center m-2 p-3">
-                <input class="form-control" type="date" name="date" placeholder="Pick a date" style="width: 500px">
+                <input class="form-control" type="date" name="date" id="date" onfocus="disablePastDates()" placeholder="Pick a date" style="width: 500px">
             </div>
             <div class="col-12 text-center m-2 p-3">
-                <input class="form-control" type="time" name="time" placeholder="Pick a time" style="width: 500px">
+                <input class="form-control" type="time" name="time" id="time" placeholder="Pick a time" style="width: 500px">
             </div>
 
             <div class="row justify-content-center">
@@ -81,6 +80,10 @@
     </div>
     
 </div>
-
 @endsection
-
+<script>
+    function disablePastDates() {
+        var today = new Date().toISOString().split('T')[0];
+        document.getElementsByName("date")[0].setAttribute('min', today);
+    }
+</script>

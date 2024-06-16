@@ -142,7 +142,9 @@ class DashboardController extends Controller
     // to delete the specific user
     function destroy($id){
         $user = User::find($id);
+        $user_bookings = Booking::where('user_id','like',$id);
         $user->delete();
+        $user_bookings->delete();
         return redirect('home')->with('success', 'Account Successfully Deleted!');
     }
 
