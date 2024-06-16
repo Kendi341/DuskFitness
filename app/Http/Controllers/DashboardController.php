@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
@@ -98,7 +99,7 @@ class DashboardController extends Controller
             */
             $booked_trainers = DB::table('users')
                 ->join('bookings', 'bookings.trainer_id', '=', 'users.id')
-                ->select('users.*', 'bookings.day', 'bookings.time')
+                ->select('users.*', 'bookings.day', 'bookings.time', 'bookings.id')
                 ->where('bookings.user_id', '=', auth()->user()->id)
                 ->get();
 
@@ -117,6 +118,18 @@ class DashboardController extends Controller
         // takes us to the dashboard page
         $trainers = User::where('role','like','1') -> get();
         return view('/dashboard', compact('trainers', 'has_bookings', 'booked_trainer'));
+    }
+
+    // allow the user to cancel their booking
+    function cancelBooking($booking_id) {
+        // get the ID of the booking
+        $booking = Booking::find($booking_id);
+
+        // delete it
+        $booking->delete();
+
+        // take user back to the dashboard with a success message
+        return redirect('dashboard')->with('success', 'Booking Successfully Deleted!');
     }
     
     // takes us to the edit details page

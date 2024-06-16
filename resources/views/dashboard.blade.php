@@ -128,6 +128,11 @@
                                 <td class="p-4"> {{ $booked_trainer -> email }} </td>
                                 <td class="p-4"> {{ $booked_trainer -> day }} </td>
                                 <td class="p-4"> {{ $booked_trainer -> time }} </td>
+                                <td class="p-4"> 
+                                    <a href="{{ url('cancel-booking/'.$booked_trainer->id) }}">
+                                        <button class="btn btn-outline-danger"> Cancel Booking </button>
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach                    
                     @endif

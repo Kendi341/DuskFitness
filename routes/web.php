@@ -58,3 +58,6 @@ Route::post('/trainer-register', [AuthManager::class, 'trainerregisterPost'])->n
 Route::get('/book-trainer/{userID}/{trainerID}', [DashboardController::class, 'bookTrainer']);
 
 Route::post('/processing-booking/{userID}/{trainerID}', [BookingController::class, 'book']);
+
+// to delete the user's booking
+Route::get('cancel-booking/{bookingID}', [DashboardController::class, 'cancelBooking']);
