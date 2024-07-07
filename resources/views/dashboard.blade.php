@@ -78,6 +78,7 @@
                         <th scope="col">Trainer FirstName</th>
                         <th scope="col">Trainer LastName</th>
                         <th scope="col">Trainer Address</th>
+                        <th scope="col">Trainer Phone Number</th>
                         <th scope="col">Trainer Email Address</th>
                         @if (auth()->user()->role == 2)
                         <th scope="col">Action</th>
@@ -90,6 +91,7 @@
                             <td scope="row" class="p-4"> {{ $trainer -> firstname }} </td>
                             <td class="p-4"> {{ $trainer -> lastname }} </td>
                             <td class="p-4"> {{ $trainer -> address }} </td>
+                            <td class="p-4"> 0{{ $trainer -> phone }} </td>
                             <td class="p-4"> {{ $trainer -> email }} </td>
                             @if (auth()->user()->role == 2)
                             <td class="p-4"> 
@@ -113,6 +115,7 @@
                         <th scope="col">Trainer FirstName</th>
                         <th scope="col">Trainer LastName</th>
                         <th scope="col">Trainer Address</th>
+                        <th scope="col">Trainer Phone Number</th>
                         <th scope="col">Trainer Email Address</th>
                         <th scope="col">Date of Reservation</th>
                         <th scope="col">Time of Reservation</th>
@@ -126,6 +129,7 @@
                                 <td class="p-4"> {{ $booked_trainer -> lastname }} </td>
                                 <td class="p-4"> {{ $booked_trainer -> address }} </td>
                                 <td class="p-4"> {{ $booked_trainer -> email }} </td>
+                                <td class="p-4"> 0{{ $booked_trainer -> phone }} </td>
                                 <td class="p-4"> {{ $booked_trainer -> day }} </td>
                                 <td class="p-4"> {{ $booked_trainer -> time }} </td>
                                 <td class="p-4"> 

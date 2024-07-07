@@ -43,8 +43,14 @@
             <div class="col-12 text-center p-3">
                 <input class="form-control" type="text" name='address' placeholder="Enter Address" style="width: 500px">
             </div>
+            <div class="col-12 text-center p-3">
+                <input class="form-control" type="number" name='phone' placeholder="Enter Phone Number e.g 2547xxxxxxxx" style="width: 500px">
+            </div>
             <div class="col-12 text-center m-2 p-3">
                 <input class="form-control" type="text" name='email' placeholder="Enter Email Address" style="width: 500px">
+            </div>
+            <div class="col-12 text-center p-3">
+                <input class="form-control" type="number" name='no_of_trainees' placeholder="Enter the Number of Trainees You Would Like to Train Per Day" style="width: 500px">
             </div>
             <div class="col-12 text-center p-3">
                 <input class="form-control" type="password" name='password' placeholder="Enter Password" style="width: 500px">

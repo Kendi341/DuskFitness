@@ -26,7 +26,7 @@ class AuthManager extends Controller
         return view('/auth/trainerregister');
     }
 
-    //receives a request that contains all the data from the login form
+    // receives a request that contains all the data from the login form
     // all data from the login form can be accessed through the request variable created below
     function loginPost(Request $request){
         // we validate the form, checking for availability of the variables (email and password) as per the form
@@ -85,6 +85,7 @@ class AuthManager extends Controller
             'fname' => 'required',
             'lname' => 'required',
             'address' => 'required',
+            'phone' => 'required',
             'email' => 'required|email',
             'password' => 'required',
             'confirm_password' => 'required'
@@ -95,6 +96,7 @@ class AuthManager extends Controller
         $data['firstname'] = $request->fname;
         $data['lastname'] = $request->lname;
         $data['address'] = $request->address;
+        $data['phone'] = $request->phone;
         $data['email'] = $request->email;
         $data['password'] = $request->password;
         $data['role'] = 2;
@@ -130,7 +132,9 @@ class AuthManager extends Controller
             'fname' => 'required',
             'lname' => 'required',
             'address' => 'required',
+            'phone' => 'required',
             'email' => 'required|email',
+            'no_of_trainees' => 'required',
             'password' => 'required',
             'confirm_password' => 'required'
         ]);
@@ -140,7 +144,9 @@ class AuthManager extends Controller
         $data['firstname'] = $request->fname;
         $data['lastname'] = $request->lname;
         $data['address'] = $request->address;
+        $data['phone'] = $request->phone;
         $data['email'] = $request->email;
+        $data['no_of_trainees'] = $request->no_of_trainees;
         $data['password'] = $request->password;
         $data2['confirm_password'] = $request->confirm_password;
         $data['role'] = 1;

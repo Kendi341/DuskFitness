@@ -61,3 +61,9 @@ Route::post('/processing-booking/{userID}/{trainerID}', [BookingController::clas
 
 // to delete the user's booking
 Route::get('cancel-booking/{bookingID}', [DashboardController::class, 'cancelBooking']);
+
+
+
+Route::get('/admin', function () {
+    return view('admindash');
+});
