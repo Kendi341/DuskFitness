@@ -95,7 +95,7 @@
                             <td class="p-4"> {{ $trainer -> email }} </td>
                             @if (auth()->user()->role == 2)
                             <td class="p-4"> 
-                                <a href="{{ url('book-trainer/'.auth()->user()->id.'/'.$trainer->id) }}">
+                                <a href=" {{ url('book-trainer/'.auth()->user()->id.'/'.$trainer->id) }} ">
                                     <button class="btn btn-outline-primary"> Book Trainer </button>
                                 </a>
                             </td>
