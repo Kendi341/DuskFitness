@@ -25,18 +25,18 @@
                     </div>
                     @endforeach
                 </div>
-            @endif
+        @endif
 
-            <!-- Here, we print out the errors due to the users attempt to login (to create a session)
-              -- this section connects with the ->with method in Auth Manager
+            <!-- Here, we print out the errors due to the users attempt to book
+              -- this section connects with the -> with method in BookingController
               -- they are many, so we foreach to print each one of them out
             -->
-            @if(session()->has('error'))
+            @if(session()->has('danger'))
                 <div class="alert alert-danger">
-                    {{ session('error') }}
+                    {{ session('danger') }}
                 </div>
             @endif
-
+            
             @if(session()->has('warning'))
                 <div class="alert alert-warning">
                     {{ session('warning') }}
@@ -44,9 +44,9 @@
             @endif
 
             @if(session()->has('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
             @endif
         </div>
         <form class="form-group" action="{{ url('processing-booking/'.$user->id.'/'.$trainer->id) }}" method="POST">

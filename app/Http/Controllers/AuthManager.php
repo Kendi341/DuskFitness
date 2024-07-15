@@ -159,6 +159,9 @@ class AuthManager extends Controller
         // encrypt the password
         $data['password'] = Hash::make($request->password);
 
+        // number of trainees = trainees for the day
+        $data['trainees_for_today'] = $data['no_of_trainees'];
+
         // insert the user in the database
         // we use a model
         // a model does all the queries to the database

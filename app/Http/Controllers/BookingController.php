@@ -23,6 +23,9 @@ class BookingController extends Controller
         // get all trainers
         $trainers = User::where('role','like','1') -> get();
 
+        // get that specific trainer
+        $trainer = User::find($trainer_id);
+
         // validate that the incoming fields have been field
         $request ->validate([
             'date' => 'required',
@@ -35,12 +38,27 @@ class BookingController extends Controller
         $data['user_id'] = $user_id;
         $data['trainer_id'] = $trainer_id;
 
+        // check if the date and the time that the user has entered already exists in the DB
+        $time_checker = Booking::select('time')->where('time', $data['time'])->exists();
+        $day_checker = Booking::select('day')->where('day', $data['day'])->exists();
+
+        // if the date and the time already exist, display the error message
+        if($time_checker && $day_checker){
+            return redirect('book-trainer/'.$user_id.'/'.$trainer_id)->with('danger', 'You have already made a booking at this time! Kindly pick another time');
+        }
+
+        $daily_trainees = $trainer['trainees_for_today'];
+
+        // reduce the reservation positions by 1
+        $trainer->trainees_for_today = $daily_trainees - 1;
+        $trainer->save();
+
         // create a booking entry on the bookings table
         $reservation = Booking::create($data);
         
         // if the booking did not work
         if (!$reservation){
-            return view(('book'))->with('error', 'Booking failed, try again!');
+            return view('book', compact('user', 'trainer'))->with('error', 'Booking failed, try again!');
         } 
 
         // this shows that the user indeed has booked a trainer

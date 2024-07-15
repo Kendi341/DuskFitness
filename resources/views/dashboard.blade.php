@@ -5,6 +5,23 @@
 <div class="container">
     <div class="row justify-content-center">
         {{-- Success or Warning Messages --}}
+
+        @if($errors->any())
+                <div class="col-12">
+                    @foreach($errors->all() as $error)
+                    <div class="alert alert-danger">
+                        {{ $error }}
+                    </div>
+                    @endforeach
+                </div>
+        @endif
+
+        @if(session()->has('danger'))
+                <div class="alert alert-danger">
+                    {{ session('danger') }}
+                </div>
+        @endif
+
         @if(session()->has('warning'))
                 <div class="alert alert-warning">
                     {{ session('warning') }}

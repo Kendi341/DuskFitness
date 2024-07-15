@@ -152,6 +152,10 @@ class DashboardController extends Controller
         $user = User::find($user_id);
         $trainer = User::find($trainer_id);
 
-        return view('book', compact('user', 'trainer'));
+        if ($trainer['trainees_for_today'] > 0) {
+            return view('book', compact('user', 'trainer'));
+        }
+
+        return redirect('dashboard')->with('danger', 'This Trainer is fully booked. Try Again Tomorrow!');
     }
 }
