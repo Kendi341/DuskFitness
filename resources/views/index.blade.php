@@ -34,20 +34,34 @@
                       </div>
                 </div>
                 <div class="col-3 text-center align-content-center">
-                    <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores pariatur, ut, quas corrupti voluptas harum exercitationem nulla animi nisi, impedit dolore veniam consequatur officiis deleniti saepe. Optio dolore perspiciatis consequatur!</h5>
+                    <h5>With the latest equipment, we assure you gains upon gains. <br><br> Come on down, one and all, young and old. We will help you train. <br><br> Are you ready to achieve that dream? Become a member or register to become a trainer below 👇</h5>
+                    <br><br>
+                    <div class="d-flex">
+                      <a class="me-3" href="{{ route('trainer.register') }}">
+                        <button class="btn btn-outline-primary">Become a Trainer</button>
+                      </a>
+                      <a class="ms-3" href="{{ route('register') }}">
+                        <button class="btn btn-outline-primary">Register as a Trainer</button>
+                      </a>
+                    </div>
+                    
                 </div>
             </div>
             <div class="row mt-5 p-4">
                 <div class="col">
                     <h3 class=text-center>ABOUT US</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore quidem quia laboriosam unde voluptatum placeat quaerat, repudiandae suscipit exercitationem iusto ipsam nostrum, autem quasi perferendis commodi nisi maxime repellendus vero.</p>
+                    <p>We are a community of fitness specialists and enthusiast, started in 2022 with the aim of growing the biggest community of trainers and members. We believe in the essenciality of pushing our bodies to the limit and unveiling our true potential. Our state of the art equipment and approved trainers aim to assist members in not just looking string, but actually being stong</p>
                 </div>
             </div>
 
             <div class="row mt-5 p-4 ">
                 <div class="col">
                     <h3 class=text-center>CONTACT US</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore quidem quia laboriosam unde voluptatum placeat quaerat, repudiandae suscipit exercitationem iusto ipsam nostrum, autem quasi perferendis commodi nisi maxime repellendus vero.</p>
+                    <p>For member and trainer registration enquiries please email: <a href="mailto:inquire@duskfitness.com">inquire@duskfitness.com</a>
+                      <br>
+                      
+                      For general business enquiries please email: <a href="mailto:corporate@duskfitness.com">corporate@duskfitness.com</a>
+                    </p>
                 </div>
             </div>
         </div>

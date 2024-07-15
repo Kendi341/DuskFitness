@@ -37,6 +37,13 @@ class AuthManager extends Controller
             'email' => 'required|email',
             'password' => 'required'
         ]);
+
+        // first, we check if the the trainer trying to log in has been approved by the admin(s)
+        $trainer_approval = User::where('email',$request->email)->first();
+
+        if ($trainer_approval->approval == 'no'){
+            return redirect(route('login'))->with('warning', 'Your Trainer Account is Pending Approval!');
+        }
         
         // gets and stores the form input in the credentials variable
         $credentials = $request->only('email', 'password');
@@ -63,6 +70,13 @@ class AuthManager extends Controller
             'email' => 'required|email',
             'password' => 'required'
         ]);
+
+        // first, we check if the the trainer trying to log in has been approved by the admin(s)
+        $trainer_approval = User::where('email',$request->email)->first();
+        
+        if ($trainer_approval->approval == 'no'){
+            return redirect(route('login'))->with('warning', 'Your Trainer Account is Pending Approval!');
+        }
         
         // gets and stores the form input in the credentials variable
         $credentials = $request->only('email', 'password');
@@ -146,6 +160,7 @@ class AuthManager extends Controller
         $data['address'] = $request->address;
         $data['phone'] = $request->phone;
         $data['email'] = $request->email;
+        $data['approval'] = 'no';
         $data['no_of_trainees'] = $request->no_of_trainees;
         $data['password'] = $request->password;
         $data2['confirm_password'] = $request->confirm_password;

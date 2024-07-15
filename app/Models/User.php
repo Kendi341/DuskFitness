@@ -24,6 +24,7 @@ class User extends Authenticatable
         'address',
         'phone',
         'email',
+        'approval',
         'no_of_trainees',
         'trainees_for_today',
         'password',

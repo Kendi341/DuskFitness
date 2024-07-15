@@ -153,7 +153,7 @@
                     (+254) (0)703-034000/200/300</p>
                     <p style="color: #FFE4E1"> (+254) (0) 730-734000/200/300 </p>
                     <p style="color: #FFE4E1"> Email: 
-                    <a href="mailto:info@nataliekendi.co.ke" id="link_email">info@nataliekendi.co.ke</a></p>
+                    <a href="mailto:info@nataliekendi.co.ke" id="link_email">info@duskfitness.com</a></p>
 
                     <hr class="light" style="margin-top: 20px">
                     <h5 id="footer_sub" style="color: #FFE4E1"> Address </h5>

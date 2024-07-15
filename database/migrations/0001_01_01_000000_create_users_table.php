@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('address');
             $table->integer('phone');
             $table->string('email')->unique();
+            $table->string('approval')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->integer('no_of_trainees')->nullable();
             $table->integer('trainees_for_today')->nullable();
