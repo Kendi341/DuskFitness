@@ -100,7 +100,7 @@ class AuthManager extends Controller
             'lname' => 'required',
             'address' => 'required',
             'phone' => 'required',
-            'email' => 'required|email|unique',
+            'email' => 'required|email',
             'password' => ['required', 'min:8', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/','regex:/[@$!%*#?&]/'],
             'confirm_password' => 'required'
         ]);
