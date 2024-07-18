@@ -24,6 +24,7 @@ return new class extends Migration
             $table->integer('trainees_for_today')->nullable();
             $table->string('password');
             $table->integer('role');
+            $table->string('status')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

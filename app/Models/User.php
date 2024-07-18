@@ -29,6 +29,7 @@ class User extends Authenticatable
         'trainees_for_today',
         'password',
         'role',
+        'status'
     ];
 
     /**

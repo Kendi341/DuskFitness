@@ -9,7 +9,12 @@
                 <div class="alert alert-success">
                     {{ session('success') }}
                 </div>
-            @endif
+              @endif
+              @if(session()->has('danger'))
+                  <div class="alert alert-danger">
+                      {{ session('danger') }}
+                  </div>
+              @endif
                 <div class="col-9 text-center">
                     <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">

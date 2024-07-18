@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DashboardController;
@@ -62,8 +63,26 @@ Route::post('/processing-booking/{userID}/{trainerID}', [BookingController::clas
 // to delete the user's booking
 Route::get('cancel-booking/{bookingID}', [DashboardController::class, 'cancelBooking']);
 
+// -------------------------------------- ADMIN ROUTES --------------------------------------------------
 
+Route::get('/admin/{adminID}', [AdminController::class, 'toAdminPage'])->name('admindash');
 
-Route::get('/admin', function () {
-    return view('admindash');
-});
+Route::get('/admin/{adminID}/approve/{trainerID}', [AdminController::class, 'approveTrainers'])->name('approveTrainers');
+
+Route::get('/admin/{adminID}/reject/{trainerID}', [AdminController::class, 'rejectTrainers'])->name('rejectTrainers');
+
+Route::get('/admin/{adminID}/suspend-member/{memberID}', [AdminController::class, 'suspendMembers'])->name('suspendMembers');
+
+Route::get('/admin/{adminID}/reactivate-member/{memberID}', [AdminController::class, 'reactivateMembers'])->name('reactivateMembers');
+
+Route::get('/admin/{adminID}/delete-member/{memberID}', [AdminController::class, 'deleteMembers'])->name('deleteMembers');
+
+Route::get('/admin/{adminID}/suspend-trainer/{trainerID}', [AdminController::class, 'suspendTrainers'])->name('suspendTrainers');
+
+Route::get('/admin/{adminID}/reactivate-trainer/{trainerID}', [AdminController::class, 'reactivateTrainers'])->name('reactivateTrainers');
+
+Route::get('/admin/{adminID}/delete-trainer/{trainerID}', [AdminController::class, 'deleteTrainers'])->name('deleteTrainers');
+
+Route::get('/admin/{adminID}/reapprove-trainer/{trainerID}', [AdminController::class, 'reapproveTrainer'])->name('reapproveTrainer');
+
+Route::get('/admin/{adminID}/remove-trainer/{trainerID}', [AdminController::class, 'removeTrainer'])->name('removeTrainer');
