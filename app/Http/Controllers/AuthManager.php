@@ -57,13 +57,14 @@ class AuthManager extends Controller
         // if the user attempts to login
         if(Auth::attempt($credentials)){
             // here, we check who is trying to log in. 
-            // It could be a trainer (role=1), a member (role=2) or an admin (role=0)
+            // It could be a trainer (role=1), a member (role=2), a normal admin (role=0) or a superadmin (role=-1)
             // if successful, redirect to the respective page (given the route a name)
             // this redirect goes with a success message which will be printed at the home page
-            if (auth()->user()->role != 0){
-                return redirect()->intended(route('dashboard'))->with('success', 'Login Successful!');
+            if (auth()->user()->role == 0 || auth()->user()->role == -1){
+                return redirect()->intended('admin/'.auth()->user()->id)->with('success', 'Login Successful!');
             }
-            return redirect()->intended('admin/'.auth()->user()->id)->with('success', 'Login Successful!');
+
+            return redirect()->intended(route('dashboard'))->with('success', 'Login Successful!');
             
         }
         // if not successful, redirect to the login page with an error message

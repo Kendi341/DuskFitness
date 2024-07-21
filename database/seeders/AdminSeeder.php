@@ -22,7 +22,7 @@ class AdminSeeder extends Seeder
             'phone'=>'722158350',
             'email' => 'tevo@gmail.com', 
             'password' => bcrypt('TevoTev@123'), 
-            'role' => 0
+            'role' => -1
         ]);
 
     }

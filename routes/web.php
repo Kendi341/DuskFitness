@@ -67,6 +67,14 @@ Route::get('cancel-booking/{bookingID}', [DashboardController::class, 'cancelBoo
 
 Route::get('/admin/{adminID}', [AdminController::class, 'toAdminPage'])->name('admindash');
 
+Route::post('/admin/{adminID}/create-admin', [AdminController::class, 'createNewAdmin'])->name('new_admin.post');
+
+Route::get('/admin/{adminID}/suspend-admin/{admin_ID}', [AdminController::class, 'suspendAdmin'])->name('suspendAdmin');
+
+Route::get('/admin/{adminID}/reactivate-admin/{admin_ID}', [AdminController::class, 'reactivateAdmin'])->name('reactivateAdmin');
+
+Route::get('/admin/{adminID}/delete-admin/{admin_ID}', [AdminController::class, 'deleteAdmin'])->name('deleteAdmin');
+
 Route::get('/admin/{adminID}/approve/{trainerID}', [AdminController::class, 'approveTrainers'])->name('approveTrainers');
 
 Route::get('/admin/{adminID}/reject/{trainerID}', [AdminController::class, 'rejectTrainers'])->name('rejectTrainers');
@@ -86,3 +94,7 @@ Route::get('/admin/{adminID}/delete-trainer/{trainerID}', [AdminController::clas
 Route::get('/admin/{adminID}/reapprove-trainer/{trainerID}', [AdminController::class, 'reapproveTrainer'])->name('reapproveTrainer');
 
 Route::get('/admin/{adminID}/remove-trainer/{trainerID}', [AdminController::class, 'removeTrainer'])->name('removeTrainer');
+
+Route::get('/admin/{adminID}/remove-booking/{bookingID}', [AdminController::class, 'removeBooking'])->name('removeBooking');
+
+

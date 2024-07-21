@@ -97,9 +97,17 @@
                                 <a id="contactLink" class="nav-link fs-5" href="/home">Contact</a>
                             </li>
                             @if(auth()->user())
-                                <li class="nav-item">
-                                    <a id="contactLink" class="nav-link fs-5" href="{{ route('dashboard') }}">Hello {{auth()->user()->firstname}}</a>
-                                </li>
+                                @if (auth()->user()->role == 0 || auth()->user()->role == -1)
+                                    <li class="nav-item">
+                                        <a id="contactLink" class="nav-link fs-5" href="{{ route('admindash', ['adminID'=>auth()->user()->id]) }}">Hello {{auth()->user()->firstname}}</a>
+                                    </li>
+
+                                @else
+                                    <li class="nav-item">
+                                        <a id="contactLink" class="nav-link fs-5" href="{{ route('dashboard') }}">Hello {{auth()->user()->firstname}}</a>
+                                    </li>
+                                    
+                                @endif
 
                                 <li class="nav-item">
                                     <a id="contactLink" class="nav-link fs-5" href="{{ route('logout') }}">Logout</a>
