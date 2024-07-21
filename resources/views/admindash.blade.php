@@ -61,25 +61,27 @@
                 <a class="nav-link" onclick="myFunction7()" href="#">Rejected Trainers</a>
             </nav>
 
+            <hr>
+
             <div id="myAccount" class="row mt-3">
-                <h5 class="text-center fw-bold p-4 m-2">MY ACCOUNT</h5>
+                <h3 class="text-center fw-bold p-4 m-2"><i>My Admin Account</i></h3>
                 
-                <div class="col-4 text-center align-content-center mb-5">
+                <div class="col-5 text-center align-content-center mb-5">
                     <img src="{{ asset('default_avatar/default_avatar.png') }}"  class="img-fluid w-50" alt="Duskfitness">
                 </div>
-                <div class="col-8">
+                <div class="col-7 align-content-center">
                     {{-- check if there is a currently logged in user --}}
                     @if(auth()->user())
                         {{-- Show the user their details --}}
-                        <h5 class="p-3">First Name: {{auth()->user()->firstname}}  </h5>
-                        <h5 class="p-3">Last Name: {{auth()->user()->lastname}} </h5>
-                        <h5 class="p-3">Address: {{auth()->user()->address}} ss</h5>
-                        <h5 class="p-3">Email: {{auth()->user()->email}} </h5>
-                        <h5 class="p-3">Phone: 0{{auth()->user()->phone}} </h5>
+                        <h5 class="p-3"><strong><i>First Name:</i></strong> {{auth()->user()->firstname}}  </h5>
+                        <h5 class="p-3"><strong><i>Last Name:</i></strong> {{auth()->user()->lastname}} </h5>
+                        <h5 class="p-3"><strong><i>Address:</i></strong> {{auth()->user()->address}} ss</h5>
+                        <h5 class="p-3"><strong><i>Email:</i></strong> {{auth()->user()->email}} </h5>
+                        <h5 class="p-3"><strong><i>Phone:</i></strong> 0{{auth()->user()->phone}} </h5>
                         @if(auth()->user()->role == 0)
-                            <h5 class="p-3">I am a Normal Admin</h5>
+                            <h5 class="p-3"><strong><i>Level:</i></strong> I am a Normal Admin </h5>
                         @elseif(auth()->user()->role == -1)
-                            <h5 class="p-3">I am a Super Admin</h5>
+                            <h5 class="p-3"><strong><i>Level:</i></strong> I am a Super Admin </h5>
                         @endif
                     @else
                         
@@ -99,7 +101,7 @@
             </div>
 
             <div id="newAdmin" class="row" style="display: none">
-                <h3 class="text-center fw-bold p-4" id="Title">
+                <h3 class="text-center fw-bold fst-italic" id="Title">
                     Create New Admin 
                 </h3>
                 
@@ -185,7 +187,9 @@
             </div>
 
             <div id="admins" class="row mt-3" style="display: none">
-                <h2>ALL ADMINS</h2>
+                <h3 class="text-center fw-bold fst-italic" id="Title">
+                    View All Admins 
+                </h3>
 
                 <table class="table table-striped table-hover">
                     <thead>
@@ -243,7 +247,9 @@
             </div>
 
             <div id="approveTrainers" class="row mt-3" style="display: none;">
-                <h2>APPROVE TRAINERS</h2>
+                <h3 class="text-center fw-bold fst-italic" id="Title">
+                    Approve Trainers 
+                </h3>
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr class="text-center fw-bold">
@@ -282,7 +288,9 @@
             </div>
 
             <div id="members" class="row mt-3" style="display: none;">
-                <h2>ALL MEMBERS</h2>
+                <h3 class="text-center fw-bold fst-italic" id="Title">
+                    View All Members 
+                </h3>
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr class="text-center fw-bold">
@@ -326,7 +334,9 @@
             </div>
 
             <div id="trainers" class="row mt-3" style="display: none;">
-                <h2>ALL TRAINERS</h2>
+                <h3 class="text-center fw-bold fst-italic" id="Title">
+                    View All Trainers 
+                </h3>
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr class="text-center fw-bold">
@@ -370,7 +380,9 @@
             </div>
 
             <div id="bookings" class="row mt-3" style="display: none;">
-                <h2>ALL BOOKINGS</h2>
+                <h3 class="text-center fw-bold fst-italic" id="Title">
+                    View All Bookings 
+                </h3>
                 <div class="d-flex">
                     <div class="col-5">
                         <table class="table table-striped table-hover">
@@ -438,7 +450,9 @@
             </div>
 
             <div id="rejected" class="row mt-3" style="display: none;">
-                <h2>REJECTIONS</h2>
+                <h3 class="text-center fw-bold fst-italic" id="Title">
+                    View All Rejected Trainers 
+                </h3>
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr class="text-center fw-bold">
