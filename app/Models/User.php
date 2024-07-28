@@ -18,6 +18,8 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    // database fields
     protected $fillable = [
         'firstname',
         'lastname',

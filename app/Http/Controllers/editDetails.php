@@ -28,13 +28,21 @@ class editDetails extends Controller
         if ($request ->input('new_password') == null && $request ->input('conf_new_password') == null) {
             // update new user credentials on the DB
             $users->update();
+
+            // redirect to dashboard with success message
             return redirect('dashboard')->with('success', 'Your details have been updated!');
+
+        // input validation for the password fields
         } else if ($request ->input('new_password') != null && $request ->input('conf_new_password') == null) {
             return redirect('dashboard')->with('warning', 'Confirm Password Field is empty!');
         } else if ($request ->input('new_password') == null && $request ->input('conf_new_password') != null) {
             return redirect('dashboard')->with('warning', 'Password Field is empty!');
         } else if ($request ->input('new_password') != null && $request ->input('conf_new_password') != null) {
+            // update password in the db
+            $users->password = $request ->input('new_password');
             $users->update();
+
+            // redirect to dashboard with a success message
             return redirect('dashboard')->with('success', 'Your details have been updated!');
         }
     }

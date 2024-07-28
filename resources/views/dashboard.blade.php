@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
+@section('title') Dashboard @endsection
+
 @section('content')
+
+<h3 class="text-center fw-bold p-4" id="Title">
+    <i>My Dashboard Page</i> 
+</h3>
 
 <div class="container">
     <div class="row justify-content-center">
@@ -34,20 +40,20 @@
                 </div>
         @endif
         <div class="col-4 text-center align-content-center mb-5">
-            <img src="{{ asset('default_avatar/default_avatar.png') }}"  class="img-fluid w-50" alt="Maestro Gym">
+            <img src="{{ asset('default_avatar/default_avatar.png') }}"  class="img-fluid w-50" alt="Duskfitness">
         </div>
         <div class="col-8">
             {{-- check if there is a currently logged in user --}}
             @if(auth()->user())
                 {{-- Show the user their details --}}
-                <h5 class="p-3">First Name: {{auth()->user()->firstname}}</h5>
-                <h5 class="p-3">Last Name: {{auth()->user()->lastname}}</h5>
-                <h5 class="p-3">Address: {{auth()->user()->address}}</h5>
-                <h5 class="p-3">Email: {{auth()->user()->email}}</h5>
+                <h5 class="p-3"><strong><i>First Name: </i></strong> {{auth()->user()->firstname}}</h5>
+                <h5 class="p-3"><strong><i>Last Name: </i></strong> {{auth()->user()->lastname}}</h5>
+                <h5 class="p-3"><strong><i>Address: </i></strong> {{auth()->user()->address}}</h5>
+                <h5 class="p-3"><strong><i>Email: </i></strong> {{auth()->user()->email}}</h5>
                 @if(auth()->user()->role == 1)
-                    <h5 class="p-3">I am a Trainer</h5>
+                    <h5 class="p-3"><strong><i>Role: </strong>I am a Trainer</h5>
                 @elseif(auth()->user()->role == 2)
-                    <h5 class="p-3">I am a Gym Member</h5>
+                    <h5 class="p-3"><strong><i>Role: </i></strong>I am a Gym Member</h5>
                 @endif
 
             @else
@@ -67,7 +73,7 @@
 
     <div class="row mt-5">
         <div class="col-12">
-            <ul class="nav nav-tabs nav-justified ">
+            <ul class="nav nav-tabs nav-justified">
                 @if(auth()->user()->role == 1)
                     <li class="nav-item">
                         <a id="underMe" class="nav-link active" onclick="myFunction()" aria-current="page" href="#">Gym Trainers</a>
@@ -88,7 +94,7 @@
     </div>
     @if (auth()->user()->role == 2)
         <div id="browser" class="row mt-3">
-            <h5 class="text-center fw-bold p-4 m-2">CHECK OUT SOME NIFTY TRAINERS YO!</h5>
+            <h5 class="text-center fw-bold p-4 m-2"><i>Book A Trainer Below</i></h5>
             <table class="table table-striped table-hover">
                 <thead>
                     <tr class="text-center fw-bold">
@@ -124,7 +130,7 @@
         </div>
 
         <div id="books" class="row mt-3" style="display: none;">
-            <h5 class="text-center fw-bold p-4 m-2">THESE ARE THE ONES I HAVE BOOKED</h5>
+            <h5 class="text-center fw-bold p-4 m-2"><i>Trainers I Have Booked</i></h5>
 
             <table class="table table-striped table-hover">
                 <thead>
@@ -163,7 +169,7 @@
 
     @elseif (auth()->user()->role == 1)
         <div id="browser" class="row mt-3">
-            <h5 class="text-center fw-bold p-4 m-2">TRAINERS AT THE GYM</h5>
+            <h5 class="text-center fw-bold p-4 m-2"><i>Trainers at the Gym</i></h5>
             <table class="table table-striped table-hover">
                 <thead>
                     <tr class="text-center fw-bold">
@@ -187,7 +193,7 @@
         </div>
 
         <div id="books" class="row mt-3" style="display: none;">
-            <h5 class="text-center fw-bold p-4 m-2">MY TRAINEES</h5>
+            <h5 class="text-center fw-bold p-4 m-2"><i>My Trainees</i></h5>
                 
             <table class="table table-striped table-hover">
                 <thead>
@@ -217,8 +223,6 @@
             </table>
         </div>
     @endif
-    
-
 @endsection
 
 <script>

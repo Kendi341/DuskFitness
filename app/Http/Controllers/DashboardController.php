@@ -11,7 +11,7 @@ use function PHPUnit\Framework\isEmpty;
 class DashboardController extends Controller
 {    
     function toDashboard(){
-        // if user is not logged in, redirect to the login page
+        // if user is not logged in, redirect to the login page with a warning message
         if(!auth()->user()){
             return redirect('login')->with('warning', 'You Must First Login!');
         }
@@ -35,7 +35,6 @@ class DashboardController extends Controller
                 ->distinct()
                 ->join('bookings', function($join){
                     $join->on('users.id', '=', 'bookings.trainer_id');
-                    //$join->on('users.id' , '=', 'users.id');
                 })
                 ->select('users.*', 'bookings.day', 'bookings.time')
                 ->get();
@@ -141,21 +140,37 @@ class DashboardController extends Controller
 
     // to delete the specific user
     function destroy($id){
+        // find user via ID
         $user = User::find($id);
+
+        // find bookings of the user
         $user_bookings = Booking::where('user_id','like',$id);
+
+        // delete user account
         $user->delete();
+
+        // delete user's bookings
         $user_bookings->delete();
+
+        // back to home page with success message
         return redirect('home')->with('success', 'Account Successfully Deleted!');
     }
 
+    // book a trainer
     function bookTrainer($user_id, $trainer_id){
+        // find user via ID
         $user = User::find($user_id);
+
+        // find trainer via ID
         $trainer = User::find($trainer_id);
 
+        // check of the trainer's daily limit has not been reached
         if ($trainer['trainees_for_today'] > 0) {
+            // to the booking page
             return view('book', compact('user', 'trainer'));
         }
 
+        // back to dashboard with warning message
         return redirect('dashboard')->with('danger', 'This Trainer is fully booked. Try Again Tomorrow!');
     }
 }

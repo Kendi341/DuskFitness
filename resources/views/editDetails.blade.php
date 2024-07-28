@@ -1,12 +1,15 @@
 @extends('layouts.app')
 
+@section('title') Edit Your Details @endsection
+
+
 @section('content')
 
 <h3 class="text-center fw-bold p-4" id="Title">
-    EDIT YOUR DETAILS 
+    <i>EDIT YOUR DETAILS</i> 
 </h3>
 
-<div class="container-fluid w-50">
+<div class="container-fluid w-50 border p-5">
     <div class="row justify-content-center">
         <div class="mt-5">
             <!-- Here, we print out the errors 
@@ -62,6 +65,15 @@
                 </div>
                 <div class="col-12 text-center m-2 p-3">
                     <input class="form-control" type="text" name="address" value="{{ $user->address }}" placeholder="Enter Address" style="width: 500px">
+                </div>
+                <div class="col-12 p-3 border border-bottom border-top" style="background-color: #DCDCDC">
+                    <h6> <strong> Your Password Must: </strong> </h6>
+                    <ul> 
+                        <li> Contain at least 8 characters </li> 
+                        <li> Contain at least 1 lowercase character </li>
+                        <li> Contain at least 1 uppercase character </li>
+                        <li> Contain at least 1 special character </li>
+                    </ul>
                 </div>
                 <div class="col-12 text-center m-2 p-3">
                     <input class="form-control" type="password" name="new_password" placeholder="Enter New Password" style="width: 500px">

@@ -9,6 +9,7 @@ class Booking extends Model
 {
     use HasFactory;
 
+    // database fields
     protected $fillable = [
         'day',
         'time',

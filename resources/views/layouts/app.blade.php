@@ -4,18 +4,22 @@
     <meta charset="utf-8">
     
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    
+    <title>@yield('title')</title>
     <!-- Icons -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 <style>
+    body{
+        background-color: #F5F5F5;
+    }
     #aboutLink{
         color: #FFE4E1;
         cursor: pointer;
     }
     #aboutLink:hover{
-        color: #D8BFD8;
+        color: #BC8F8F;
     }
     #aboutLink:active{
         text-decoration: underline;
@@ -25,7 +29,7 @@
         cursor: pointer;
     }
     #contactLink:hover{
-        color: #D8BFD8;
+        color: #BC8F8F;
     }
     #contactLink:active{
         text-decoration: underline;
@@ -35,7 +39,7 @@
         cursor: pointer;
     }
     #loginLink:hover{
-        color: #D8BFD8
+        color: #BC8F8F
     }
     #loginLink:active{
         text-decoration: underline;
@@ -45,7 +49,7 @@
         cursor: pointer;
     }
     #registerLink:hover{
-        color: #D8BFD8;
+        color: #BC8F8F;
     }
     #registerLink:active{
         text-decoration: underline;
@@ -55,7 +59,7 @@
         cursor: pointer;
     }
     #related1:hover{
-        color: #D8BFD8;
+        color: #BC8F8F;
     }
     #related1:active{
         text-decoration: underline;
@@ -65,7 +69,7 @@
         cursor: pointer;
     }
     #related2:hover{
-        color: #D8BFD8;
+        color: #BC8F8F;
     }
     #related2:active{
         text-decoration: underline;
@@ -75,11 +79,40 @@
         cursor: pointer;
     }
     #related3:hover{
-        color: #D8BFD8;
+        color: #BC8F8F;
     }
     #related3:active{
         text-decoration: underline;
     }
+    .fa {
+        padding: 10px;
+        font-size: 30px;
+        width: 50px;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 10%;
+    }
+    .fa-facebook {
+        background: #3B5998;
+        color: white;
+    }
+
+    /* Twitter */
+    .fa-twitter {
+        background: #55ACEE;
+        color: white;
+    }
+
+    .fa-instagram {
+        background: #125688;
+        color: white;
+    }
+
+    .fa-pinterest {
+        background: #cb2027;
+        color: white;
+    }
+
 </style>
     <header>
         <div class="mb-5">
@@ -143,19 +176,20 @@
                 <div class="col-md-4">
                     <a href="{{ '/home' }}"><img class="w-100" src="{{ asset('/Logo/dusk-removebg.png') }}"/></a>
 
+                    <hr style="color: white">
                     <h5 style="color: #FFE4E1"> Our Social Media </h5>
+                    <hr style="color: white">
                     <div class="social" style="margin-top: 20px">
-                        <a href="https://web.facebook.com/StrathmoreUniversity?_rdc=1&_rdr" target="_blank"><i class="fab fa-facebook"></i></a>
-                        <a href="https://www.instagram.com/strathmore.university" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://twitter.com/StrathU" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.youtube.com/user/StrathmoreUniversity" target="_blank"><i class="fab fa-youtube"></i></a>
-                        <a href="https://www.linkedin.com/school/strathmore-university/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="fa fa-facebook"></a>
+                        <a href="#" class="fa fa-twitter"></a>
+                        <a href="#" class="fa fa-instagram"></a>
+                        <a href="#" class="fa fa-pinterest"></a>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <hr class="light">
+                    <hr style="color: white">
                     <h5 id="footer_sub" style="color: #FFE4E1"> Contact Us </h5>
-                    <hr class="light">
+                    <hr style="color: white">
                     
                     <p style="color: #FFE4E1"> Tel:
                     (+254) (0)703-034000/200/300</p>
@@ -163,16 +197,16 @@
                     <p style="color: #FFE4E1"> Email: 
                     <a href="mailto:info@nataliekendi.co.ke" id="link_email">info@duskfitness.com</a></p>
 
-                    <hr class="light" style="margin-top: 20px">
+                    <hr style="color: white">
                     <h5 id="footer_sub" style="color: #FFE4E1"> Address </h5>
-                    <hr class="light">
+                    <hr style="color: white">
 
-                    <p style="color: #FFE4E1"> Ole Sangale Road, off Langata Road, in Madaraka Estate, Nairobi, Kenya. </p>
+                    <p style="color: #FFE4E1"> Langata Road, off Langata Road, in Langata Estate, Nairobi, Kenya. </p>
                 </div>
                 <div class="col-md-4">
-                    <hr class="light">
+                    <hr style="color: white">
                     <h5 style="color: #FFE4E1"> Related Links </h5>
-                    <hr class="light">
+                    <hr style="color: white">
 
                     <a id="related1" class="text-decoration-none" href="https://thenx.com/" id="link" target="_blank"> <p> Thenx Athlete </p> </a>
                     <a id="related2" class="text-decoration-none" href="https://www.hybridcalisthenics.com/" id="link" target="_blank"> <p> Hybrid Calisthenics </p> </a>

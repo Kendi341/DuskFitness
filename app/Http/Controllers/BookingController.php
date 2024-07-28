@@ -10,6 +10,7 @@ use App\Models\Booking;
 
 class BookingController extends Controller
 {
+    // book a trainer
     function book($user_id, $trainer_id, Request $request){
 
         // if user is not logged in, redirect to the login page
@@ -47,10 +48,13 @@ class BookingController extends Controller
             return redirect('book-trainer/'.$user_id.'/'.$trainer_id)->with('danger', 'You have already made a booking at this time! Kindly pick another time');
         }
 
+        // daily trainees variable helps keep track of the number of members a trainer is associated with
         $daily_trainees = $trainer['trainees_for_today'];
 
-        // reduce the reservation positions by 1
+        // reduce the reservation positions by 1 for the trainer
         $trainer->trainees_for_today = $daily_trainees - 1;
+
+        // update in the db
         $trainer->save();
 
         // create a booking entry on the bookings table
@@ -69,7 +73,6 @@ class BookingController extends Controller
         ->distinct()
         ->join('bookings', function($join){
             $join->on('users.id', '=', 'bookings.trainer_id');
-            // $join->on('users.id' , '=', 'users.id');
         })
         ->select('users.*', 'bookings.day', 'bookings.time')
         ->get();
@@ -91,8 +94,8 @@ class BookingController extends Controller
             ->get();
 
         
-        // redirect to the dashboard page            
-        return view('dashboard', compact('user', 'trainers', 'booked_trainer', 'booked_trainers', 'has_bookings'))
+        // redirect to the dashboard page with success message            
+        return redirect()->route('dashboard', compact('user', 'trainers', 'booked_trainer', 'booked_trainers', 'has_bookings'))
                 ->with('success', 'Successfully Booked Trainer');
     }
 }

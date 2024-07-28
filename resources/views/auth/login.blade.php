@@ -1,12 +1,14 @@
 @extends('layouts.app')
 
+@section('title') Login @endsection
+
 @section('content')
 
 <h3 class="text-center fw-bold p-4" id="Title">
-    LOGIN
+    <i>LOGIN</i>
 </h3>
 
-<div class="container-fluid w-50">
+<div class="container-fluid w-50 border p-3">
     <div class="row justify-content-center">
         <div class="mt-5">
             <!-- Here, we print out the errors 

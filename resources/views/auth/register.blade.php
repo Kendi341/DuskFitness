@@ -1,12 +1,15 @@
 @extends('layouts.app')
 
+@section('title') Member Register @endsection
+
+
 @section('content')
 
 <h3 class="text-center fw-bold p-4" id="Title">
-    REGISTER 
+    <i>REGISTER</i> 
 </h3>
 
-<div class="container-fluid w-50">
+<div class="container-fluid w-50 border p-5">
     <div class="row justify-content-center">
         <div class="mt-5">
             @if($errors->any())

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title') Book a Trainer @endsection
+
 @section('content')
 
 <h3 class="text-center fw-bold p-4" id="Title">

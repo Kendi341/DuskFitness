@@ -1,9 +1,11 @@
 @extends('layouts.app')
 
+@section('title') Forgot Password @endsection
+
 @section('content')
 
 <h3 class="text-center fw-bold p-4">
-    RESET YOUR PASSWORD 
+    <i>RESET YOUR PASSWORD</i> 
 </h3>
 
 <div class="container-fluid w-50">

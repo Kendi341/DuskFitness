@@ -10,18 +10,17 @@ use Illuminate\Support\Facades\Session;
 
 class AuthManager extends Controller
 {
+    // to login page
     function login(){
         return view('/auth/login');
     }
 
+    // to register page
     function register(){
         return view('/auth/register');
     }
 
-    function trainerlogin(){
-        return view('/auth/trainerregister');
-    }
-
+    // to trainer register page
     function trainerregister(){
         return view('/auth/trainerregister');
     }
@@ -64,45 +63,7 @@ class AuthManager extends Controller
                 return redirect()->intended('admin/'.auth()->user()->id)->with('success', 'Login Successful!');
             }
 
-            return redirect()->intended(route('dashboard'))->with('success', 'Login Successful!');
-            
-        }
-        // if not successful, redirect to the login page with an error message
-        return redirect(route('login'))->with('error', 'Login Details Incorrect!');
-    }
-
-    //receives a request that contains all the data from the login form
-    // all data from the login form can be accessed through the request variable created below
-    function trainerloginPost(Request $request){
-        // we validate the form, checking for availability of the variables (email and password) as per the form
-        // if the items are not present, it displays an error automatically
-        // has key => value pairs syntax
-        // the key is obtained from the form (the NAME of the input)
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
-
-        // first, we check if the the trainer trying to log in has been approved by the admin(s)
-        // then, we check if the account is active, inactive or suspended
-        $trainer_approval = User::where('email',$request->email)->first();
-
-        if ($trainer_approval->approval == 'no') {
-            return redirect(route('login'))->with('warning', 'Your Trainer Account is Pending Approval!');
-        } else if ($trainer_approval->status == 'inactive') {
-            return redirect(route('login'))->with('warning', 'Your approval request has been rejected, kindly contact customer support via inquire@duskfitness.com');
-        } else if ($trainer_approval->status == 'suspended'){
-            return redirect(route('login'))->with('warning', 'Your account has been suspended, kindly contact customer support via inquire@duskfitness.com');
-        }
-        
-        // gets and stores the form input in the credentials variable
-        $credentials = $request->only('email', 'password');
-
-        // here, we do the actual login
-        // if the user attempts to login
-        if(Auth::attempt($credentials)){
-            // if successful, redirect to the home page (given the route a name)
-            // this redirect goes with a success message which will be printed at the home page
+            // to dashboard with success message
             return redirect()->intended(route('dashboard'))->with('success', 'Login Successful!');
         }
         // if not successful, redirect to the login page with an error message
@@ -154,6 +115,7 @@ class AuthManager extends Controller
             return redirect(route('register'))->with('error', 'Registration failed, try again!');
         } 
 
+        // back to home page with success message
         return redirect(route('home'))->with('success', 'Registration Successful!');
     }
 
@@ -206,8 +168,9 @@ class AuthManager extends Controller
         // if there is no user
         if (!$user){
             return redirect(route('register'))->with('error', 'Registration failed, try again!');
-        } 
-
+        }
+        
+        // back to home page with success message
         return redirect(route('home'))->with('success', 'Registration Successful!');
     }
 

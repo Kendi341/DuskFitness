@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title') Admin Dashboard @endsection
+
+
 @section('content')
 
 <div class="container-fluid">
@@ -101,11 +104,11 @@
             </div>
 
             <div id="newAdmin" class="row" style="display: none">
-                <h3 class="text-center fw-bold fst-italic" id="Title">
+                <h3 class="text-center fw-bold fst-italic m-5" id="Title">
                     Create New Admin 
                 </h3>
                 
-                <div class="container-fluid w-50">
+                <div class="container-fluid w-50 border p-4">
                     <div class="row justify-content-center">
                         <div class="mt-5">
                             @if($errors->any())
@@ -187,7 +190,7 @@
             </div>
 
             <div id="admins" class="row mt-3" style="display: none">
-                <h3 class="text-center fw-bold fst-italic" id="Title">
+                <h3 class="text-center fw-bold fst-italic m-5" id="Title">
                     View All Admins 
                 </h3>
 
@@ -226,16 +229,16 @@
                                         <td class="p-4">
                                             @if($admin -> status == 'suspended')
                                                 <a href=" {{ url('admin/'.auth()->user()->id.'/reactivate-admin/'.$admin->id) }} ">
-                                                    <button class="btn btn-outline-success"> Re-Activate Admin </button>
+                                                    <button class="btn btn-outline-success m-2"> Re-Activate Admin </button>
                                                 </a>
                                             @else
                                                 <a href=" {{ url('admin/'.auth()->user()->id.'/suspend-admin/'.$admin->id) }} ">
-                                                    <button class="btn btn-outline-success"> Suspend Admin </button>
+                                                    <button class="btn btn-outline-success m-2"> Suspend Admin </button>
                                                 </a>
                                             @endif
                                             
                                             <a href=" {{ url('admin/'.auth()->user()->id.'/delete-admin/'.$admin->id) }} " onclick="if (!window.confirm('This action is irreversible. Are you sure you want to proceed?')) return false">
-                                                <button class="btn btn-outline-danger"> Delete Admin </button>
+                                                <button class="btn btn-outline-danger m-2"> Delete Admin </button>
                                             </a>
                                         </td>
                                     @endif
@@ -247,7 +250,7 @@
             </div>
 
             <div id="approveTrainers" class="row mt-3" style="display: none;">
-                <h3 class="text-center fw-bold fst-italic" id="Title">
+                <h3 class="text-center fw-bold fst-italic m-5" id="Title">
                     Approve Trainers 
                 </h3>
                 <table class="table table-striped table-hover">
@@ -275,10 +278,10 @@
                                 <td class="p-4"> {{ $pendingTrainer -> status }} </td>
                                 <td class="p-4"> 
                                     <a href=" {{ url('admin/'.auth()->user()->id.'/approve/'.$pendingTrainer->id) }} ">
-                                        <button class="btn btn-outline-success"> Approve Trainer </button>
+                                        <button class="btn btn-outline-success m-2"> Approve Trainer </button>
                                     </a>
                                     <a href=" {{ url('admin/'.auth()->user()->id.'/reject/'.$pendingTrainer->id) }} ">
-                                        <button class="btn btn-outline-danger"> Reject Trainer </button>
+                                        <button class="btn btn-outline-danger m-2"> Reject Trainer </button>
                                     </a>
                                 </td>
                             </tr>
@@ -288,7 +291,7 @@
             </div>
 
             <div id="members" class="row mt-3" style="display: none;">
-                <h3 class="text-center fw-bold fst-italic" id="Title">
+                <h3 class="text-center fw-bold fst-italic m-5" id="Title">
                     View All Members 
                 </h3>
                 <table class="table table-striped table-hover">
@@ -315,16 +318,16 @@
                                 <td class="p-4">
                                     @if ($member->status == 'active')
                                         <a href=" {{ url('admin/'.auth()->user()->id.'/suspend-member/'.$member->id) }} ">
-                                            <button class="btn btn-outline-primary"> Suspend Member </button>
+                                            <button class="btn btn-outline-primary m-2"> Suspend Member </button>
                                         </a>
                                     @else
                                         <a href=" {{ url('admin/'.auth()->user()->id.'/reactivate-member/'.$member->id) }} ">
-                                            <button class="btn btn-outline-primary"> Reactivate Member </button>
+                                            <button class="btn btn-outline-primary m-2"> Reactivate Member </button>
                                         </a>
                                     @endif
                                     
                                     <a href=" {{ url('admin/'.auth()->user()->id.'/delete-member/'.$member->id) }} " onclick="if (!window.confirm('This action is irreversible. Are you sure you want to proceed?')) return false">
-                                        <button class="btn btn-outline-danger"> Delete Member </button>
+                                        <button class="btn btn-outline-danger m-2"> Delete Member </button>
                                     </a>
                                 </td>
                             </tr>
@@ -334,7 +337,7 @@
             </div>
 
             <div id="trainers" class="row mt-3" style="display: none;">
-                <h3 class="text-center fw-bold fst-italic" id="Title">
+                <h3 class="text-center fw-bold fst-italic m-5" id="Title">
                     View All Trainers 
                 </h3>
                 <table class="table table-striped table-hover">
@@ -361,16 +364,16 @@
                                 <td class="p-4">
                                     @if ($trainer->status == 'active')
                                         <a href=" {{ url('admin/'.auth()->user()->id.'/suspend-trainer/'.$trainer->id) }} ">
-                                            <button class="btn btn-outline-primary"> Suspend Trainer </button>
+                                            <button class="btn btn-outline-primary m-2"> Suspend Trainer </button>
                                         </a>
                                     @else
                                         <a href=" {{ url('admin/'.auth()->user()->id.'/reactivate-trainer/'.$trainer->id) }} ">
-                                            <button class="btn btn-outline-primary"> Reactivate Trainer </button>
+                                            <button class="btn btn-outline-primary m-2"> Reactivate Trainer </button>
                                         </a>
                                     @endif
 
                                     <a href=" {{ url('admin/'.auth()->user()->id.'/delete-trainer/'.$trainer->id) }} " onclick="if (!window.confirm('This action is irreversible. Are you sure you want to proceed?')) return false">
-                                        <button class="btn btn-outline-danger"> Delete Trainer </button>
+                                        <button class="btn btn-outline-danger m-2"> Delete Trainer </button>
                                     </a>
                                 </td>
                             </tr>
@@ -380,7 +383,7 @@
             </div>
 
             <div id="bookings" class="row mt-3" style="display: none;">
-                <h3 class="text-center fw-bold fst-italic" id="Title">
+                <h3 class="text-center fw-bold fst-italic m-5" id="Title">
                     View All Bookings 
                 </h3>
                 <div class="d-flex">
@@ -438,7 +441,7 @@
                                         <td class="p-4"> 0{{ $trainer_booking -> phone }} </td>
                                         <td> 
                                             <a href=" {{ url('admin/'.auth()->user()->id.'/remove-booking/'.$trainer_booking->id) }} " onclick="if (!window.confirm('This action is irreversible. Are you sure you want to proceed?')) return false">
-                                                <button class="btn btn-outline-danger"> Cancel Booking </button>
+                                                <button class="btn btn-outline-danger m-2"> Cancel Booking </button>
                                             </a>
                                         </td>
                                     </tr>
@@ -450,7 +453,7 @@
             </div>
 
             <div id="rejected" class="row mt-3" style="display: none;">
-                <h3 class="text-center fw-bold fst-italic" id="Title">
+                <h3 class="text-center fw-bold fst-italic m-5" id="Title">
                     View All Rejected Trainers 
                 </h3>
                 <table class="table table-striped table-hover">
@@ -476,10 +479,10 @@
                                 <td class="p-4"> {{ $rejectedTrainer -> status }} </td>
                                 <td class="p-4"> 
                                     <a href=" {{ url('admin/'.auth()->user()->id.'/reapprove-trainer/'.$rejectedTrainer->id) }} ">
-                                        <button class="btn btn-outline-success"> Re-Approve Trainer </button>
+                                        <button class="btn btn-outline-success m-2"> Re-Approve Trainer </button>
                                     </a>
                                     <a href=" {{ url('admin/'.auth()->user()->id.'/remove-trainer/'.$rejectedTrainer->id) }} " onclick="if (!window.confirm('This action is irreversible. Are you sure you want to proceed?')) return false">
-                                        <button class="btn btn-outline-danger"> Delete Trainer Account </button>
+                                        <button class="btn btn-outline-danger m-2"> Delete Trainer Account </button>
                                     </a>
                                 </td>
                             </tr>

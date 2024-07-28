@@ -7,7 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\editDetails;
 use Illuminate\Support\Facades\Route;
 
-// -------------------------------------- HOME PAGE ROUTE ---------------------------------------------
+// ---------------------------------------------------------- HOME PAGE ROUTE ---------------------------------------------------
 Route::get('/', function () {
     return view('index');
 });
@@ -56,8 +56,10 @@ Route::post('/trainer-register', [AuthManager::class, 'trainerregisterPost'])->n
 
 // -------------------------------------- BOOKING ROUTES ----------------------------------------------
 
+// direct user to the page where thy can book a trainer
 Route::get('/book-trainer/{userID}/{trainerID}', [DashboardController::class, 'bookTrainer']);
 
+// create a booking
 Route::post('/processing-booking/{userID}/{trainerID}', [BookingController::class, 'book']);
 
 // to delete the user's booking
@@ -65,36 +67,52 @@ Route::get('cancel-booking/{bookingID}', [DashboardController::class, 'cancelBoo
 
 // -------------------------------------- ADMIN ROUTES --------------------------------------------------
 
+// direct admin to their dashboard page
 Route::get('/admin/{adminID}', [AdminController::class, 'toAdminPage'])->name('admindash');
 
+// create new admin
 Route::post('/admin/{adminID}/create-admin', [AdminController::class, 'createNewAdmin'])->name('new_admin.post');
 
+// suspend an admin
 Route::get('/admin/{adminID}/suspend-admin/{admin_ID}', [AdminController::class, 'suspendAdmin'])->name('suspendAdmin');
 
+// re-activate an admin after suspension
 Route::get('/admin/{adminID}/reactivate-admin/{admin_ID}', [AdminController::class, 'reactivateAdmin'])->name('reactivateAdmin');
 
+// delete an admin account
 Route::get('/admin/{adminID}/delete-admin/{admin_ID}', [AdminController::class, 'deleteAdmin'])->name('deleteAdmin');
 
+// approve trainers
 Route::get('/admin/{adminID}/approve/{trainerID}', [AdminController::class, 'approveTrainers'])->name('approveTrainers');
 
+// reject trainers
 Route::get('/admin/{adminID}/reject/{trainerID}', [AdminController::class, 'rejectTrainers'])->name('rejectTrainers');
 
+// suspend members
 Route::get('/admin/{adminID}/suspend-member/{memberID}', [AdminController::class, 'suspendMembers'])->name('suspendMembers');
 
+// re-activate members after suspension
 Route::get('/admin/{adminID}/reactivate-member/{memberID}', [AdminController::class, 'reactivateMembers'])->name('reactivateMembers');
 
+// delete member account
 Route::get('/admin/{adminID}/delete-member/{memberID}', [AdminController::class, 'deleteMembers'])->name('deleteMembers');
 
+// suspend a trainer
 Route::get('/admin/{adminID}/suspend-trainer/{trainerID}', [AdminController::class, 'suspendTrainers'])->name('suspendTrainers');
 
+// re-activate trainer after suspension
 Route::get('/admin/{adminID}/reactivate-trainer/{trainerID}', [AdminController::class, 'reactivateTrainers'])->name('reactivateTrainers');
 
+// delete trainer account
 Route::get('/admin/{adminID}/delete-trainer/{trainerID}', [AdminController::class, 'deleteTrainers'])->name('deleteTrainers');
 
+// re-approe a rejected trainer
 Route::get('/admin/{adminID}/reapprove-trainer/{trainerID}', [AdminController::class, 'reapproveTrainer'])->name('reapproveTrainer');
 
+// delete account details of a rejected trainer
 Route::get('/admin/{adminID}/remove-trainer/{trainerID}', [AdminController::class, 'removeTrainer'])->name('removeTrainer');
 
+// delete a user booking
 Route::get('/admin/{adminID}/remove-booking/{bookingID}', [AdminController::class, 'removeBooking'])->name('removeBooking');
 
 
