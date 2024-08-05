@@ -16,7 +16,7 @@
     <div class="row justify-content-center">
         <div class="mt-5">
             <!-- Here, we print out the errors 
-              -- this first section prints out errors due to form validation (the validate function in Auth Manager)
+              -- this first section prints out errors due to form validation (the validate function in Booking Controller)
               -- they are many, so we foreach to print each one of them out
             -->
             @if($errors->any())
@@ -27,7 +27,7 @@
                     </div>
                     @endforeach
                 </div>
-        @endif
+            @endif
 
             <!-- Here, we print out the errors due to the users attempt to book
               -- this section connects with the -> with method in BookingController
@@ -52,7 +52,7 @@
             @endif
         </div>
         <form class="form-group" action="{{ url('processing-booking/'.$user->id.'/'.$trainer->id) }}" method="POST">
-            <!-- csrf is a security feature for laravel -->
+            <!-- csrf is a security feature for laravel forms -->
             @csrf
             <div class="col-12 text-center m-2 p-3">
                 <input class="form-control" type="text" name="fname" placeholder="Trainer First Name" value="{{ $trainer->firstname }}" disabled style="width: 500px">

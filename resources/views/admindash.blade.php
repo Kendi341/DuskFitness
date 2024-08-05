@@ -53,6 +53,9 @@
         <div class="col-12">
             <nav class="nav nav-pills nav-fill">
                 <a class="nav-link active" onclick="myFunction()" aria-current="page" href="#">My Account Details</a>
+                {{-- Check if it is a super admin logged in
+                  -- Super admin can create a new admin
+                  -- While a normal user does not have access to this feature --}}
                 @if (auth()->user()->role == -1)
                     <a class="nav-link" onclick="myFunction1()" href="#">Create A New Admin</a>
                 @endif
@@ -65,6 +68,8 @@
             </nav>
 
             <hr>
+
+{{--------------------------------------- ADMIN ACCOUNT DETAILS -------------------------------------------}}
 
             <div id="myAccount" class="row mt-3">
                 <h3 class="text-center fw-bold p-4 m-2"><i>My Admin Account</i></h3>
@@ -91,11 +96,9 @@
                     @endif
         
                     <div class="text-center m-4">
-                        {{--  --}}
                         <a href="{{ url('edit/'.auth()->user()->id) }}" class="btn btn-outline-primary m-2" >
                             Edit Details
                         </a>
-                        {{--  --}}
                         <a href="{{ url('delete/'.auth()->user()->id) }}" onclick="if (!window.confirm('This action is irreversible. Are you sure you want to proceed?')) return false" class="btn btn-outline-danger m-2">
                             Delete Account
                         </a>
@@ -103,6 +106,7 @@
                 </div>
             </div>
 
+{{---------------------------------- CREATE NEW ADMIN TAB ---------------------------------------------}}
             <div id="newAdmin" class="row" style="display: none">
                 <h3 class="text-center fw-bold fst-italic m-5" id="Title">
                     Create New Admin 
@@ -134,7 +138,7 @@
                             @endif
                         </div>
                         <form class="form-group" action="{{ route('new_admin.post',  ['adminID'=>auth()->user()->id]) }}" method="POST">
-                            <!-- csrf is a security feature for laravel -->
+                            <!-- csrf is a security feature for laravel forms -->
                             @csrf
                             <div class="col-12 text-center p-3">
                                 <input class="form-control" type="text" name='fname' placeholder="Enter First Name" style="width: 500px">
@@ -156,10 +160,7 @@
                                 <input class="form-check-input fs-4 ms-3" type="checkbox" name="super_admin">
                                 <label class="form-check-label p-1 ms-3" for="super_admin">
                                     Make this User a Super Admin?
-                                </label>
-                                  
-                                {{-- <input type="radio" name='super_admin' value="Make this User a Super Admin?">
-                                <label for="super_admin"></label> --}}
+                                </label>                         
                             </div>
 
                             <div class="col-12 p-3 border border-bottom border-top" style="background-color: #DCDCDC">
@@ -189,11 +190,14 @@
                 </div>                
             </div>
 
+{{--------------------------------------- VIEW ALL ADMINS TAB -----------------------------------------}}
+
             <div id="admins" class="row mt-3" style="display: none">
                 <h3 class="text-center fw-bold fst-italic m-5" id="Title">
                     View All Admins 
                 </h3>
 
+                {{-- Display them in a table --}}
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr class="text-center fw-bold">
@@ -210,6 +214,8 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {{-- There could be many admins
+                          -- So we user a for each loop to get each admin individually --}}
                         @foreach ($allAdmins as $admin)
                             <tr class="text-center">
                                 <td scope="row" class="p-4"> {{ $admin -> firstname }} </td>
@@ -249,6 +255,8 @@
                 </table>
             </div>
 
+{{--------------------------------------- APPROVE TRAINERS TAB -----------------------------------------}}
+
             <div id="approveTrainers" class="row mt-3" style="display: none;">
                 <h3 class="text-center fw-bold fst-italic m-5" id="Title">
                     Approve Trainers 
@@ -267,6 +275,8 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {{-- There could be many trainers pending approval
+                          -- So we user a for each loop to get each admin individually --}}
                         @foreach ($pendingTrainers as $pendingTrainer)
                             <tr class="text-center">
                                 <td scope="row" class="p-4"> {{ $pendingTrainer -> firstname }} </td>
@@ -290,6 +300,8 @@
                 </table>
             </div>
 
+{{--------------------------------------- VIEW ALL MEMBERS TAB -----------------------------------------}}
+
             <div id="members" class="row mt-3" style="display: none;">
                 <h3 class="text-center fw-bold fst-italic m-5" id="Title">
                     View All Members 
@@ -307,6 +319,8 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {{-- There could be many members
+                          -- So we user a for each loop to get each member individually --}}
                         @foreach ($allMembers as $member)
                             <tr class="text-center">
                                 <td scope="row" class="p-4"> {{ $member -> firstname }} </td>
@@ -336,6 +350,8 @@
                 </table>
             </div>
 
+{{--------------------------------------- VIEW ALL TRAINERS TAB -----------------------------------------}}
+
             <div id="trainers" class="row mt-3" style="display: none;">
                 <h3 class="text-center fw-bold fst-italic m-5" id="Title">
                     View All Trainers 
@@ -353,6 +369,8 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {{-- There could be many trainers
+                          -- So we user a for each loop to get each trainer individually --}}
                         @foreach ($allTrainers as $trainer)
                             <tr class="text-center">
                                 <td scope="row" class="p-4"> {{ $trainer -> firstname }} </td>
@@ -382,12 +400,18 @@
                 </table>
             </div>
 
+{{--------------------------------------- VIEW ALL BOOKINGS TAB -----------------------------------------}}
+
             <div id="bookings" class="row mt-3" style="display: none;">
                 <h3 class="text-center fw-bold fst-italic m-5" id="Title">
                     View All Bookings 
                 </h3>
+                {{-- Display this in two tables --}}
+                {{-- First: Members who have booked trainers --}}
+                {{-- Second: Trainers who have been booked by members --}}
                 <div class="d-flex">
                     <div class="col-5">
+                        {{-- First Table --}}
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr class="text-center fw-bold">
@@ -397,6 +421,8 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {{-- There could be many bookings
+                                  -- So we user a for each loop to get each bookings individually --}}
                                 @foreach ($allMemberBookings as $member_booking)
                                     <tr class="text-center">
                                         <td scope="row" class="p-4"> {{ $member_booking -> firstname }} {{ $member_booking -> lastname }} </td>
@@ -425,6 +451,7 @@
                     </div>
                     <div class="col-6">
                         <table class="table table-striped table-hover">
+                            {{-- Second Table --}}
                             <thead>
                                 <tr class="text-center fw-bold">
                                     <th scope="col">Trainer Name</th>
@@ -434,6 +461,8 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {{-- There could be many bookings
+                                  -- So we user a for each loop to get each bookings individually --}}
                                 @foreach ($allTrainerBookings as $trainer_booking)
                                     <tr class="text-center">
                                         <td scope="row" class="p-4"> {{ $trainer_booking -> firstname }} {{ $trainer_booking -> lastname }} </td>
@@ -452,6 +481,8 @@
                 </div>
             </div>
 
+{{--------------------------------------- VIEW ALL REJECTED TRAINERS TAB -----------------------------------------}}
+
             <div id="rejected" class="row mt-3" style="display: none;">
                 <h3 class="text-center fw-bold fst-italic m-5" id="Title">
                     View All Rejected Trainers 
@@ -469,6 +500,8 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {{-- There could be many rejected trainers
+                          -- So we user a for each loop to get each rejrcted trainer individually --}}
                         @foreach ($rejectedTrainers as $rejectedTrainer)
                             <tr class="text-center">
                                 <td scope="row" class="p-4"> {{ $rejectedTrainer -> firstname }} </td>
@@ -495,6 +528,7 @@
 </div>
 
 <script>
+    // This segment allows us to switch from one tab to another
     const navLinkEls = document.querySelectorAll('.nav-link');
 
     navLinkEls.forEach(navLinkEls => {
@@ -504,6 +538,7 @@
         });
     });
 
+    // this segment displays information depending on the tab selected
     function myFunction(){
         var myAcc = document.getElementById("myAccount");
         var newAdmin = document.getElementById("newAdmin");

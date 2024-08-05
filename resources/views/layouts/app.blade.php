@@ -3,13 +3,16 @@
 <head>
     <meta charset="utf-8">
     
+    <!-- Connecting bootstrap -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     
+    <!-- Adding specific page titles -->
     <title>@yield('title')</title>
+
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 </head>
+
 <style>
     body{
         background-color: #F5F5F5;
@@ -92,6 +95,8 @@
         text-decoration: none;
         border-radius: 10%;
     }
+
+    /* Facebook */
     .fa-facebook {
         background: #3B5998;
         color: white;
@@ -103,11 +108,13 @@
         color: white;
     }
 
+    /* Instagram */
     .fa-instagram {
         background: #125688;
         color: white;
     }
 
+    /* Pinterest */
     .fa-pinterest {
         background: #cb2027;
         color: white;
@@ -129,7 +136,9 @@
                             <li class="nav-item">
                                 <a id="contactLink" class="nav-link fs-5" href="/home">Contact</a>
                             </li>
+                            {{-- Check if there is a currently logged in user --}}
                             @if(auth()->user())
+                                {{-- Check if user is a super or normal admin --}}
                                 @if (auth()->user()->role == 0 || auth()->user()->role == -1)
                                     <li class="nav-item">
                                         <a id="contactLink" class="nav-link fs-5" href="{{ route('admindash', ['adminID'=>auth()->user()->id]) }}">Hello {{auth()->user()->firstname}}</a>
@@ -166,6 +175,7 @@
         </div>  
         
         <main>
+            {{-- Display page body --}}
             @yield('content')
         </main>
     </header>

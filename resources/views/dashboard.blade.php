@@ -10,8 +10,10 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        {{-- Success or Warning Messages --}}
-
+        <!-- Here, we print out the errors 
+            -- this first section prints out errors due to form validation (the validate function in Dashboard Controller)
+            -- they are many, so we foreach to print each one of them out
+        -->
         @if($errors->any())
                 <div class="col-12">
                     @foreach($errors->all() as $error)
@@ -22,6 +24,10 @@
                 </div>
         @endif
 
+        <!-- Here, we print out the errors due to the users attempt to book
+              -- this section connects with the -> with method in BookingController
+              -- they are many, so we foreach to print each one of them out
+            -->
         @if(session()->has('danger'))
                 <div class="alert alert-danger">
                     {{ session('danger') }}

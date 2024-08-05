@@ -11,6 +11,11 @@
 <div class="container-fluid w-50 border p-5">
     <div class="row justify-content-center">
         <div class="mt-5">
+            <!-- Here, we print out the errors 
+              -- this first section prints out errors due to form validation (the validate function in Auth Manager)
+              -- they are many, so we use a foreach loop to print each one of them out
+            -->
+
             @if($errors->any())
                 <div class="col-12">
                     @foreach($errors->all() as $error)
@@ -20,6 +25,11 @@
                     @endforeach
                 </div>
             @endif
+
+            <!-- Here, we print out the errors due to the users attempt to login (to create a session)
+              -- this section connects with the ->with method in Auth Manager
+              -- they are many, so we use a foreach loop to print each one of them out
+            -->
 
             @if(session()->has('error'))
                 <div class="alert alert-danger">
@@ -34,7 +44,7 @@
             @endif
         </div>
         <form class="form-group" action="{{ route('trainer.register.post') }}" method="POST">
-            <!-- csrf is a security feature for laravel -->
+            <!-- csrf is a security feature for laravel forms -->
             @csrf
             <div class="col-12 text-center p-3">
                 <input class="form-control" type="text" name='fname' placeholder="Enter First Name" style="width: 500px">
