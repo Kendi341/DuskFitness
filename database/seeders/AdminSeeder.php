@@ -17,11 +17,11 @@ class AdminSeeder extends Seeder
         // create the first user who is the super admin
         User::create([
             'firstname' => 'Admin',
-            'lastname' => 'TevoTev', 
+            'lastname' => 'Kendi', 
             'address'=>'LANGATA',
-            'phone'=>'722158350',
-            'email' => 'tevo@gmail.com', 
-            'password' => bcrypt('TevoTev@123'), 
+            'phone'=>'722100100',
+            'email' => 'kendi@gmail.com', 
+            'password' => bcrypt('Kendi@123'), 
             'role' => -1
         ]);
 

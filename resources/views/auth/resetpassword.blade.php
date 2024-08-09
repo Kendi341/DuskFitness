@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title') Forgot Password @endsection
+@section('title') Reset Password @endsection
 
 @section('content')
 
@@ -29,13 +29,6 @@
               -- this section connects with the ->with method in Auth Manager
               -- they are many, so we foreach to print each one of them out
             -->
-
-            @if ($errors->has('email'))
-                <span class="invalid-feedback">
-                    <strong>{{ $errors->first('email') }}</strong>
-                </span>
-            @endif
-
             @if(session()->has('error'))
                 <div class="alert alert-danger">
                     {{ session('error') }}
@@ -61,11 +54,23 @@
             @endif
         </div>
 
-        <form class="form-group" action="{{ route('forgotpassword.post') }}" method="POST">
+        <form class="form-group" action="{{ route('resetpassword.post', $userID) }}" method="POST">
             <!-- csrf is a security feature for laravel forms -->
             @csrf
+            <div class="col-12 p-3 border border-bottom border-top" style="background-color: #DCDCDC">
+                <h6> <strong> Your Password Must: </strong> </h6>
+                <ul> 
+                    <li> Contain at least 8 characters </li> 
+                    <li> Contain at least 1 lowercase character </li>
+                    <li> Contain at least 1 uppercase character </li>
+                    <li> Contain at least 1 special character </li>
+                </ul>
+            </div>
             <div class="col-12 text-center p-3">
-                <input class="form-control" name="email" type="email" placeholder="Enter Email Address" style="width: 500px">
+                <input class="form-control" type="password" name="new_password" placeholder="Enter New Password" style="width: 500px">
+            </div>
+            <div class="col-12 text-center p-3">
+                <input class="form-control" type="password" name="confirm_password" placeholder="Confirm Password" style="width: 500px">
             </div>
             <div class="row justify-content-center">
                 <div class="text-center m-5">

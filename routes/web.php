@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\editDetails;
 use Illuminate\Support\Facades\Route;
 
@@ -29,9 +30,14 @@ Route::post('/register', [AuthManager::class, 'registerPost'])->name('register.p
 Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
 
 // ------------------------------------- RESET PASSWORD ROUTE -----------------------------------------
-Route::get('/forgotpassword', function () {
-    return view('/auth/forgotpassword');
-});
+// to forgot password page
+Route::get('/forgotpassword', [ForgotPasswordController::class, 'forgotPasswordPage'])->name('forgotPassword');
+
+Route::post('/forgotpassword', [ForgotPasswordController::class, 'forgotPasswordCheck'])->name('forgotpassword.post');
+
+Route::get('/resetpassword/{id}', [ForgotPasswordController::class, 'resetPassword'])->name('resetPassword');
+
+Route::post('/resetpassword/{id}', [ForgotPasswordController::class, 'changePassword'])->name('resetpassword.post');
 
 // ------------------------------------- DASHBOARD ROUTE ----------------------------------------------
 // to dashboard page

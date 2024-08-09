@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 
 
 class editDetails extends Controller
@@ -38,8 +40,8 @@ class editDetails extends Controller
         } else if ($request ->input('new_password') == null && $request ->input('conf_new_password') != null) {
             return redirect('dashboard')->with('warning', 'Password Field is empty!');
         } else if ($request ->input('new_password') != null && $request ->input('conf_new_password') != null) {
-            // update password in the db
-            $users->password = $request ->input('new_password');
+            // hash and update password in the db
+            $users->password = Hash::make($request ->input('new_password'));
             $users->update();
 
             // redirect to dashboard with a success message
